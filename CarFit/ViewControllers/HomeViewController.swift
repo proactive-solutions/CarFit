@@ -13,13 +13,16 @@ final class HomeViewController: UIViewController, AlertDisplayer {
     @IBOutlet private var calendarView: UIView!
     @IBOutlet private weak var calendar: UIView!
     @IBOutlet private weak var calendarButton: UIBarButtonItem!
-    @IBOutlet private weak var workOrderTableView: UITableView!
+    @IBOutlet private weak var workOrderTableView: TableView!
     
     private let cellID = "HomeTableViewCell"
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.addCalendar()
+        self.workOrderTableView.onRefresh {
+            print("Refresh done")
+        }
     }
     
     override func viewDidLoad() {
@@ -45,9 +48,8 @@ final class HomeViewController: UIViewController, AlertDisplayer {
     
     //MARK:- Show calendar when tapped, Hide the calendar when tapped outside the calendar view
     @IBAction private func calendarTapped(_ sender: UIBarButtonItem) {
-        
+
     }
-    
 }
 
 

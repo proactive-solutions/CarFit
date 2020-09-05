@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D9A86EA250354150074C2F8 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9A86E9250354150074C2F8 /* TableView.swift */; };
 		620DDEB0247E773C00BBF31C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DDEAF247E773C00BBF31C /* AppDelegate.swift */; };
 		620DDEB2247E773C00BBF31C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DDEB1247E773C00BBF31C /* SceneDelegate.swift */; };
 		620DDEB7247E773C00BBF31C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 620DDEB5247E773C00BBF31C /* Main.storyboard */; };
@@ -57,6 +58,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D9A86E9250354150074C2F8 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		620DDEAC247E773C00BBF31C /* CarFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		620DDEAF247E773C00BBF31C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		620DDEB1247E773C00BBF31C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D9A86E8250353CB0074C2F8 /* UIKitSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				2D9A86E9250354150074C2F8 /* TableView.swift */,
+			);
+			path = UIKitSubclasses;
+			sourceTree = "<group>";
+		};
 		620DDEA3247E773C00BBF31C = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +153,7 @@
 		620DDEAE247E773C00BBF31C /* CarFit */ = {
 			isa = PBXGroup;
 			children = (
+				2D9A86E8250353CB0074C2F8 /* UIKitSubclasses */,
 				620DDEF5247E77C800BBF31C /* ViewControllers */,
 				620DDEF6247E77E300BBF31C /* Views */,
 				620DDEE2247E776700BBF31C /* Utils */,
@@ -405,6 +416,7 @@
 				620DDEEA247E779700BBF31C /* DayCell.swift in Sources */,
 				620DDEFA247E780C00BBF31C /* HomeTableViewCell.swift in Sources */,
 				620DDEB2247E773C00BBF31C /* SceneDelegate.swift in Sources */,
+				2D9A86EA250354150074C2F8 /* TableView.swift in Sources */,
 				62FA8FF5247EB63A00F08E73 /* AlertDisplayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
