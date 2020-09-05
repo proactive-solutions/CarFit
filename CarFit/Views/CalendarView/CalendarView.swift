@@ -11,12 +11,12 @@ protocol CalendarDelegate: class {
     func getSelectedDate(_ date: String)
 }
 
-class CalendarView: UIView {
+final class CalendarView: UIView {
 
-    @IBOutlet weak var monthAndYear: UILabel!
-    @IBOutlet weak var leftBtn: UIButton!
-    @IBOutlet weak var rightBtn: UIButton!
-    @IBOutlet weak var daysCollectionView: UICollectionView!
+    @IBOutlet private weak var monthAndYear: UILabel!
+    @IBOutlet private weak var leftBtn: UIButton!
+    @IBOutlet private weak var rightBtn: UIButton!
+    @IBOutlet private weak var daysCollectionView: UICollectionView!
     
     private let cellID = "DayCell"
     weak var delegate: CalendarDelegate?
@@ -30,7 +30,7 @@ class CalendarView: UIView {
     }
     
     //MARK:- Change month when left and right arrow button tapped
-    @IBAction func arrowTapped(_ sender: UIButton) {
+    @IBAction private func arrowTapped(_ sender: UIButton) {
         
     }
     

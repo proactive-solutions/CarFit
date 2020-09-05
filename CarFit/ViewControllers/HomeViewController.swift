@@ -7,13 +7,13 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, AlertDisplayer {
+final class HomeViewController: UIViewController, AlertDisplayer {
 
-    @IBOutlet var navBar: UINavigationBar!
-    @IBOutlet var calendarView: UIView!
-    @IBOutlet weak var calendar: UIView!
-    @IBOutlet weak var calendarButton: UIBarButtonItem!
-    @IBOutlet weak var workOrderTableView: UITableView!
+    @IBOutlet private var navBar: UINavigationBar!
+    @IBOutlet private var calendarView: UIView!
+    @IBOutlet private weak var calendar: UIView!
+    @IBOutlet private weak var calendarButton: UIBarButtonItem!
+    @IBOutlet private weak var workOrderTableView: UITableView!
     
     private let cellID = "HomeTableViewCell"
     
@@ -44,7 +44,7 @@ class HomeViewController: UIViewController, AlertDisplayer {
     }
     
     //MARK:- Show calendar when tapped, Hide the calendar when tapped outside the calendar view
-    @IBAction func calendarTapped(_ sender: UIBarButtonItem) {
+    @IBAction private func calendarTapped(_ sender: UIBarButtonItem) {
         
     }
     

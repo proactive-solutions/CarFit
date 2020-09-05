@@ -8,18 +8,17 @@
 import UIKit
 import CoreLocation
 
-class HomeTableViewCell: UITableViewCell {
+final class HomeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var bgView: UIView!
-    @IBOutlet weak var customer: UILabel!
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var status: UILabel!
-    @IBOutlet weak var tasks: UILabel!
-    @IBOutlet weak var arrivalTime: UILabel!
-    @IBOutlet weak var destination: UILabel!
-    @IBOutlet weak var timeRequired: UILabel!
-    @IBOutlet weak var distance: UILabel!
-    
+    @IBOutlet private weak var bgView: UIView!
+    @IBOutlet private weak var customer: UILabel!
+    @IBOutlet private weak var statusView: UIView!
+    @IBOutlet private weak var status: UILabel!
+    @IBOutlet private weak var tasks: UILabel!
+    @IBOutlet private weak var arrivalTime: UILabel!
+    @IBOutlet private weak var destination: UILabel!
+    @IBOutlet private weak var timeRequired: UILabel!
+    @IBOutlet private weak var distance: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

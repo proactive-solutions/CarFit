@@ -7,12 +7,11 @@
 
 import UIKit
 
-class DayCell: UICollectionViewCell {
+final class DayCell: UICollectionViewCell {
 
-    @IBOutlet weak var dayView: UIView!
-    @IBOutlet weak var day: UILabel!
-    @IBOutlet weak var weekday: UILabel!
-    
+    @IBOutlet private weak var dayView: UIView!
+    @IBOutlet private weak var day: UILabel!
+    @IBOutlet private weak var weekday: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
