@@ -22,9 +22,22 @@ final class HomeTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.bgView.layer.cornerRadius = 10.0
-        self.statusView.layer.cornerRadius = self.status.frame.height / 2.0
-        self.statusView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
+        bgView.layer.cornerRadius = 10.0
+        statusView.layer.cornerRadius = status.frame.height / 2.0
+        statusView.layer.maskedCorners = [
+            .layerMinXMinYCorner,
+            .layerMinXMaxYCorner
+        ]
     }
 
+    func display(details: VisitsDataModel) {
+        customer.text = details.fullName
+        destination.text = details.location
+        let _status = details.visitStatus
+        status.text = _status.rawValue.uppercased()
+        statusView.backgroundColor = _status.color()
+        arrivalTime.text = details.expectedTime ?? "Unknown"
+        timeRequired.text = "\(details.requiredTime()) min"
+        tasks.text = details.taskDescription()
+    }
 }
