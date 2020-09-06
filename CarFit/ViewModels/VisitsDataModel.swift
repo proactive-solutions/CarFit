@@ -38,8 +38,6 @@ final class VisitsDataModel {
     }
 
     func taskDescription() -> String {
-        visitData.tasks.reduce("", { total, task in
-            return "\(total), \(task.title)"
-        })
+        visitData.tasks.map { $0.title }.joined(separator: ", ")
     }
 }
