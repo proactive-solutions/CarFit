@@ -18,5 +18,9 @@ final class DayCell: UICollectionViewCell {
         self.dayView.layer.cornerRadius = self.dayView.frame.width / 2.0
         self.dayView.backgroundColor = .clear
     }
-    
+
+    func display(day _day: Int, dayOfWeek: String) {
+        day.text = "\(_day + 1)"
+        weekday.text = dayOfWeek
+    }
 }

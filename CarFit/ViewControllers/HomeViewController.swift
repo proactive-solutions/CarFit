@@ -26,7 +26,9 @@ final class HomeViewController: UIViewController, AlertDisplayer {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
+        setupUI()
+        cleanerListViewModel.getVisits()
+        workOrderTableView.reloadData()
     }
 
     // MARK: - Add calender to view
