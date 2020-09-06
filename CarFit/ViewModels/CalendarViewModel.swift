@@ -20,6 +20,16 @@ final class CalendarViewModel {
         Constants.monthNames[month - 1]
     }
 
+    func isCurrentDate(day: Int) -> Bool {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: "\(year)-\(month)-\(day)")
+        let todayDate = Date()
+        let strValue = dateFormatter.string(from: todayDate)
+        let date2 = dateFormatter.date(from: strValue)
+        print(date, strValue, date2)
+        return date == date2
+    }
+
     func dayOfWeek(day: Int) -> String {
         var dateComponents = DateComponents()
         dateComponents.year = year

@@ -19,8 +19,9 @@ final class DayCell: UICollectionViewCell {
         self.dayView.backgroundColor = .clear
     }
 
-    func display(day _day: Int, dayOfWeek: String) {
-        day.text = "\(_day + 1)"
+    func display(day _day: Int, dayOfWeek: String, isCurrentDay: Bool) {
+        day.text = "\(_day)"
         weekday.text = dayOfWeek
+        dayView.backgroundColor = isCurrentDay ? .daySelected : .clear
     }
 }

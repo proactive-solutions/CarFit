@@ -64,8 +64,9 @@ extension CalendarView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) as! DayCell
         cell.display(
-            day: indexPath.item,
-            dayOfWeek: caledarViewModel.dayOfWeek(day: indexPath.item + 1)
+            day: indexPath.item + 1,
+            dayOfWeek: caledarViewModel.dayOfWeek(day: indexPath.item + 1),
+            isCurrentDay: caledarViewModel.isCurrentDate(day: indexPath.item + 1)
         )
         return cell
     }
