@@ -13,6 +13,8 @@ final class HomeViewController: UIViewController, AlertDisplayer {
     @IBOutlet private var calendar: UIView!
     @IBOutlet private var calendarButton: UIBarButtonItem!
     @IBOutlet private var workOrderTableView: TableView!
+    @IBOutlet private var calendarViewHeight:
+    NSLayoutConstraint!
 
     private let cellID = "HomeTableViewCell"
 
@@ -57,7 +59,13 @@ final class HomeViewController: UIViewController, AlertDisplayer {
     }
 
     // MARK: - Show calendar when tapped, Hide the calendar when tapped outside the calendar view
-    @IBAction private func calendarTapped(_ sender: UIBarButtonItem) {}
+    @IBAction private func calendarTapped(_ sender: UIBarButtonItem) {
+        calendarViewHeight.constant = 200.0
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            guard let self = self else { return }
+            self.view.layoutIfNeeded()
+        })
+    }
 }
 
 // MARK: - Tableview delegate and datasource methods

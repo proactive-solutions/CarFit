@@ -45,10 +45,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0f-yn-c6Z">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8y5-5g-wfL">
-                                        <rect key="frame" x="0.0" y="64" width="414" height="135"/>
+                                        <rect key="frame" x="0.0" y="-136" width="414" height="135"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="135" id="Y4u-Kb-PLB"/>
@@ -57,7 +57,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.18039215689999999" green="0.6588235294" blue="0.53725490200000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Gql-bW-MLW"/>
+                                    <constraint firstAttribute="height" id="Gql-bW-MLW"/>
                                     <constraint firstAttribute="trailing" secondItem="8y5-5g-wfL" secondAttribute="trailing" id="JOo-Jw-nxD"/>
                                     <constraint firstAttribute="bottom" secondItem="8y5-5g-wfL" secondAttribute="bottom" constant="1" id="XlT-JV-WZi"/>
                                     <constraint firstItem="8y5-5g-wfL" firstAttribute="leading" secondItem="X0f-yn-c6Z" secondAttribute="leading" id="fgd-GH-Jzp"/>
@@ -96,13 +96,14 @@
                         <outlet property="calendar" destination="8y5-5g-wfL" id="0ac-Vz-7JB"/>
                         <outlet property="calendarButton" destination="btp-xY-6wR" id="18a-Ve-doW"/>
                         <outlet property="calendarView" destination="X0f-yn-c6Z" id="HFR-dj-rqt"/>
+                        <outlet property="calendarViewHeight" destination="Gql-bW-MLW" id="cH1-NX-Rwo"/>
                         <outlet property="navBar" destination="uSM-Nc-Uim" id="zF2-oN-t8a"/>
                         <outlet property="workOrderTableView" destination="m1e-N8-4Vt" id="JhI-5Q-m8O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="679.71014492753625" y="-125.22321428571428"/>
+            <point key="canvasLocation" x="686" y="-126"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="owl-yx-pAC">

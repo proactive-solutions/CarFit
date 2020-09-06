@@ -69,14 +69,6 @@ extension CalendarView: UICollectionViewDataSource, UICollectionViewDelegate {
         )
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-
-    }
 }
 
 //MARK:- Add calendar to the view
