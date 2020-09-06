@@ -11,23 +11,13 @@ import Foundation
 final class CalendarViewModel {
     private let calendar = Calendar.current
     private let todaysDate = Date()
-
-    private let monthNames = [
-        "Jan", "Feb", "Mar", "Apr",
-        "May", "Jun", "Jul", "Aug",
-        "Sep", "Oct", "Nov", "Dec",
-    ]
-
-    private let weekdayName = [
-        "Sun", "Mon", "Tue",
-        "Wed", "Thu","Fri", "Sat"
-    ]
+    private let dateFormatter = DateFormatter()
 
     var month = Date().get(components: .month).month ?? 1
     var year = Date().get(components: .year).year ?? 2020
 
     var monthTitle: String {
-        monthNames[month - 1]
+        Constants.monthNames[month - 1]
     }
 
     func dayOfWeek(day: Int) -> String {
@@ -36,9 +26,16 @@ final class CalendarViewModel {
         dateComponents.month = month
         dateComponents.day = day
         dateComponents.timeZone = TimeZone.current
+
+        let todayDate = Date()
+        dateFormatter.dateFormat = "HH"
+        dateComponents.hour = Int(dateFormatter.string(from: todayDate))
+        dateFormatter.dateFormat = "mm"
+        dateComponents.minute = Int(dateFormatter.string(from: todayDate))
+
         let someDateTime = Calendar.current.date(from: dateComponents)
         let weekDay = calendar.component(.weekday, from: someDateTime!)
-        return weekdayName[weekDay - 1]
+        return  Constants.weekdayName[weekDay - 1]
     }
 
     func numberOfDaysIn() -> Int {
