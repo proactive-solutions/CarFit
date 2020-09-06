@@ -31,6 +31,8 @@ final class HomeViewController: UIViewController, AlertDisplayer {
         setupUI()
         cleanerListViewModel.getVisits()
         workOrderTableView.reloadData()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleCalendarviewAppearance))
+        workOrderTableView.addGestureRecognizer(tapGesture)
     }
 
     // MARK: - Add calender to view
@@ -58,13 +60,17 @@ final class HomeViewController: UIViewController, AlertDisplayer {
         }
     }
 
-    // MARK: - Show calendar when tapped, Hide the calendar when tapped outside the calendar view
-    @IBAction private func calendarTapped(_ sender: UIBarButtonItem) {
-        calendarViewHeight.constant = 200.0
+    @objc private func toggleCalendarviewAppearance() {
+        calendarViewHeight.constant = calendarViewHeight.constant >= 200 ? 0.0 : 200.0
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
             guard let self = self else { return }
             self.view.layoutIfNeeded()
         })
+    }
+
+    // MARK: - Show calendar when tapped, Hide the calendar when tapped outside the calendar view
+    @IBAction private func calendarTapped(_ sender: UIBarButtonItem) {
+        toggleCalendarviewAppearance()
     }
 }
 
