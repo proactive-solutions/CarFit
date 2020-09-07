@@ -95,7 +95,10 @@ class CarFitTests: XCTestCase {
         let jsonData = visitJSON.data(using: .utf8)
         let visits: VisitsData? = try? VisitsData.decodeWith(data: jsonData!)
         XCTAssertNotNil(visits)
+        
+        // Alredy tested `visits` for nil values to force unwrap is safe here
         let viewModel = VisitsDataModel(with: visits!)
+
         XCTAssertTrue(viewModel.location == "Sorgenfrigårdsvej 54 st th 2800 Lyngby")
         XCTAssertTrue(viewModel.fullName == "Mads Kolding")
         XCTAssertNil(viewModel.expectedTime)
@@ -109,7 +112,7 @@ class CarFitTests: XCTestCase {
         viewModel.year = 2020
 
         XCTAssertTrue(viewModel.monthTitle == "Feb")
-        XCTAssertTrue(viewModel.numberOfDaysIn() == 29)
+        XCTAssertTrue(viewModel.numberOfDays() == 29)
         XCTAssertTrue(viewModel.dayOfWeek(day: 1) == "Sat")
         XCTAssertFalse(viewModel.isCurrentDate(day: 1))
 

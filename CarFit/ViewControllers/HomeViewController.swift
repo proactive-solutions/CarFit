@@ -13,27 +13,25 @@ final class HomeViewController: UIViewController, AlertDisplayer {
     @IBOutlet private var calendarView: UIView!
     @IBOutlet private var calendar: UIView!
     @IBOutlet private var calendarButton: UIBarButtonItem!
-    @IBOutlet private var workOrderTableView: TableView!
-    @IBOutlet private var calendarViewHeight:
-    NSLayoutConstraint!
-
+    @IBOutlet private var workOrderTableView: RefreshableTableView!
+    @IBOutlet private var calendarViewHeight: NSLayoutConstraint!
     private let cellID = "HomeTableViewCell"
 
+    private let tapGesture = UITapGestureRecognizer()
     private let cleanerListViewModel = CleanerListViewModel()
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.addCalendar()
-        self.addPullToRefresh()
+        self.addPullToRefreshOnTableView()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        addTapGesureOnTableView()
         cleanerListViewModel.getVisits()
         workOrderTableView.reloadData()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleCalendarviewAppearance))
-        workOrderTableView.addGestureRecognizer(tapGesture)
     }
 
     // MARK: - Add calender to view
@@ -52,7 +50,16 @@ final class HomeViewController: UIViewController, AlertDisplayer {
         self.workOrderTableView.estimatedRowHeight = 170
     }
 
-    private func addPullToRefresh() {
+    // MARK: - Table view seups
+    private func addTapGesureOnTableView() {
+        tapGesture.addTarget(self, action: #selector(toggleCalendarviewAppearance))
+        workOrderTableView.addGestureRecognizer(tapGesture)
+        // Initially disable the tap gesture on the table view to stop showing the calendar when the user taps on the workOrderTableView.
+        // If this is not disable then tapping multiple times on the work workOrderTableView will hide and show the calendar view.
+        tapGesture.isEnabled = false
+    }
+
+    private func addPullToRefreshOnTableView() {
         self.workOrderTableView.onRefresh { [weak self] in
             guard let self = self else { return }
             self.cleanerListViewModel.getVisits()
@@ -61,7 +68,9 @@ final class HomeViewController: UIViewController, AlertDisplayer {
         }
     }
 
+    /// Toggles calendar view apperance with animation
     @objc private func toggleCalendarviewAppearance() {
+        tapGesture.isEnabled.toggle()
         calendarViewHeight.constant = calendarViewHeight.constant >= 200 ? 0.0 : 200.0
         UIView.animate(withDuration: 0.3, animations: { [weak self] in
             guard let self = self else { return }
@@ -86,14 +95,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
         if let data = cleanerListViewModel.visits?.data[indexPath.row] {
             if (indexPath.row == 0) {
-                cell.display(details: VisitsDataModel(with: data), previousVistiLocation: nil)
+                cell.display(visit: VisitsDataModel(with: data), previousVistiLocation: nil)
             } else if let previousVisitData = cleanerListViewModel.visits?.data[indexPath.row - 1] {
                 let prevVisitLocation = CLLocation(
                     latitude: previousVisitData.houseOwnerLatitude,
                     longitude: previousVisitData.houseOwnerLongitude
                 )
                 cell.display(
-                    details: VisitsDataModel(with: data),
+                    visit: VisitsDataModel(with: data),
                     previousVistiLocation: prevVisitLocation
                 )
             }

@@ -17,7 +17,7 @@
 		2D32C4882504A9F000BA3287 /* VisitsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D32C4872504A9F000BA3287 /* VisitsDataModel.swift */; };
 		2D8069412503DB990032B917 /* CleanerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8069402503DB990032B917 /* CleanerListViewModel.swift */; };
 		2D8069442503DDEB0032B917 /* Visits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D8069432503DDEB0032B917 /* Visits.swift */; };
-		2D9A86EA250354150074C2F8 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9A86E9250354150074C2F8 /* TableView.swift */; };
+		2D9A86EA250354150074C2F8 /* RefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9A86E9250354150074C2F8 /* RefreshableTableView.swift */; };
 		2D9A86EE25035F5B0074C2F8 /* Decodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D9A86ED25035F5B0074C2F8 /* Decodable+Extensions.swift */; };
 		620DDEB0247E773C00BBF31C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DDEAF247E773C00BBF31C /* AppDelegate.swift */; };
 		620DDEB2247E773C00BBF31C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 620DDEB1247E773C00BBF31C /* SceneDelegate.swift */; };
@@ -79,7 +79,7 @@
 		2D32C4872504A9F000BA3287 /* VisitsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitsDataModel.swift; sourceTree = "<group>"; };
 		2D8069402503DB990032B917 /* CleanerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanerListViewModel.swift; sourceTree = "<group>"; };
 		2D8069432503DDEB0032B917 /* Visits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visits.swift; sourceTree = "<group>"; };
-		2D9A86E9250354150074C2F8 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
+		2D9A86E9250354150074C2F8 /* RefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableTableView.swift; sourceTree = "<group>"; };
 		2D9A86ED25035F5B0074C2F8 /* Decodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decodable+Extensions.swift"; sourceTree = "<group>"; };
 		620DDEAC247E773C00BBF31C /* CarFit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarFit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		620DDEAF247E773C00BBF31C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,10 +155,7 @@
 		2D80693F2503DB620032B917 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				2D8069402503DB990032B917 /* CleanerListViewModel.swift */,
 				2D32C48525049EF000BA3287 /* TaskViewModel.swift */,
-				2D32C4872504A9F000BA3287 /* VisitsDataModel.swift */,
-				2D129D482504EA6F005ADDC8 /* CalendarViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -176,7 +173,7 @@
 		2D9A86E8250353CB0074C2F8 /* UIKitSubclasses */ = {
 			isa = PBXGroup;
 			children = (
-				2D9A86E9250354150074C2F8 /* TableView.swift */,
+				2D9A86E9250354150074C2F8 /* RefreshableTableView.swift */,
 			);
 			path = UIKitSubclasses;
 			sourceTree = "<group>";
@@ -254,6 +251,7 @@
 		620DDEE3247E779700BBF31C /* CalendarView */ = {
 			isa = PBXGroup;
 			children = (
+				2D129D482504EA6F005ADDC8 /* CalendarViewModel.swift */,
 				620DDEE4247E779700BBF31C /* CalendarView.xib */,
 				620DDEE7247E779700BBF31C /* CalendarView.swift */,
 				620DDEE5247E779700BBF31C /* DayCell.xib */,
@@ -276,6 +274,7 @@
 		620DDEF5247E77C800BBF31C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2D8069402503DB990032B917 /* CleanerListViewModel.swift */,
 				620DDEFB247E782500BBF31C /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
@@ -312,6 +311,7 @@
 		62FA8FF6247EB65800F08E73 /* HomeTableCell */ = {
 			isa = PBXGroup;
 			children = (
+				2D32C4872504A9F000BA3287 /* VisitsDataModel.swift */,
 				620DDEF8247E780C00BBF31C /* HomeTableViewCell.swift */,
 				620DDEF7247E780C00BBF31C /* HomeTableViewCell.xib */,
 			);
@@ -483,7 +483,7 @@
 				2D129D4B25050751005ADDC8 /* Constants.swift in Sources */,
 				2D129D472504C77F005ADDC8 /* Date+Extension.swift in Sources */,
 				2D32C48425049A4600BA3287 /* VisitState.swift in Sources */,
-				2D9A86EA250354150074C2F8 /* TableView.swift in Sources */,
+				2D9A86EA250354150074C2F8 /* RefreshableTableView.swift in Sources */,
 				2D0A186E2505344400627977 /* Task.swift in Sources */,
 				62FA8FF5247EB63A00F08E73 /* AlertDisplayer.swift in Sources */,
 			);

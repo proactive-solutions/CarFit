@@ -13,9 +13,13 @@ final class CalendarViewModel {
     private let todaysDate = Date()
     private let dateFormatter = DateFormatter()
 
+    /// Current month in the calendar view
     var month = Date().get(components: .month).month ?? 1
+
+    /// Current year in the calendar view
     var year = Date().get(components: .year).year ?? 2020
 
+    /// retruns month name in short form ex. Jan
     var monthTitle: String {
         Constants.monthNames[month - 1]
     }
@@ -29,6 +33,9 @@ final class CalendarViewModel {
         return date == date2
     }
 
+    /// Returns weekday for the day i.e. day is Sunday, Monday etc. Month and Year is used from the `month` and `year` property respectively.
+    /// - Parameter day: A valid day according to set month and year
+    /// - Returns: <#description#>
     func dayOfWeek(day: Int) -> String {
         var dateComponents = DateComponents()
         dateComponents.year = year
@@ -47,7 +54,9 @@ final class CalendarViewModel {
         return  Constants.weekdayName[weekDay - 1]
     }
 
-    func numberOfDaysIn() -> Int {
+    /// Number of days in the month in a particualar year.  Month and Year is used from the `month` and `year` property respectively.
+    /// - Returns: Number of years in the month
+    func numberOfDays() -> Int {
         let dateComponents = DateComponents(year: year, month: month)
         let date = calendar.date(from: dateComponents)!
         let range = calendar.range(of: .day, in: .month, for: date)!

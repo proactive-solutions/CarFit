@@ -11,6 +11,7 @@ import Foundation
 final class CleanerListViewModel {
     var visits: Visits?
 
+    /// Get visits from the source and parse the response
     func getVisits() {
         guard
             let url = Bundle.main.url(forResource: "carfit", withExtension: "json"),

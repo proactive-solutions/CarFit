@@ -12,9 +12,12 @@ protocol Refreshable: AnyObject {
     func endRefresh()
 }
 
-final class TableView: UITableView, Refreshable {
+/// UITableView subclass for adding refresh control on UITableView
+final class RefreshableTableView: UITableView, Refreshable {
     private var onRefreshAction: (() -> Void)?
 
+    /// Adds refresh control
+    /// - Parameter action: Callback to receive when Pull To Refresh is performed by the user
     func onRefresh(action: @escaping (() -> Void)) {
         self.onRefreshAction = action
         let _refreshControl = UIRefreshControl()
@@ -26,6 +29,7 @@ final class TableView: UITableView, Refreshable {
         self.onRefreshAction?()
     }
 
+    /// Stops refresh animation
     func endRefresh() {
         self.refreshControl?.endRefreshing()
     }

@@ -8,8 +8,9 @@
 import UIKit
 import CoreLocation
 
+/// Represents Work Order Table view cell instance
 final class HomeTableViewCell: UITableViewCell {
-
+    //MARK: - IBOutlets
     @IBOutlet private weak var bgView: UIView!
     @IBOutlet private weak var customer: UILabel!
     @IBOutlet private weak var statusView: UIView!
@@ -20,6 +21,7 @@ final class HomeTableViewCell: UITableViewCell {
     @IBOutlet private weak var timeRequired: UILabel!
     @IBOutlet private weak var distance: UILabel!
 
+    //MARK: - View Life Cycles
     override func awakeFromNib() {
         super.awakeFromNib()
         bgView.layer.cornerRadius = 10.0
@@ -30,18 +32,22 @@ final class HomeTableViewCell: UITableViewCell {
         ]
     }
 
-    func display(details: VisitsDataModel, previousVistiLocation: CLLocation?) {
-        customer.text = details.fullName
-        destination.text = details.location
-        let _status = details.visitStatus
+    /// Displays visit details
+    /// - Parameters:
+    ///   - visit: VisitsDataModel instance for providing all the information in required format
+    ///   - previousVistiLocation: Location of previous visit. Used to calculate distance between current visit and previous visit.
+    func display(visit: VisitsDataModel, previousVistiLocation: CLLocation?) {
+        customer.text = visit.fullName
+        destination.text = visit.location
+        let _status = visit.visitStatus
         status.text = _status.rawValue.uppercased()
-        statusView.backgroundColor = _status.color()
-        arrivalTime.text = details.expectedTime ?? "Unknown"
-        timeRequired.text = "\(details.requiredTime()) min"
-        tasks.text = details.taskDescription()
+        statusView.backgroundColor = _status.backgroundColor()
+        arrivalTime.text = visit.expectedTime ?? "Unknown"
+        timeRequired.text = "\(visit.requiredTime()) min"
+        tasks.text = visit.taskDescription()
 
         if let prevLocation = previousVistiLocation {
-            distance.text = String(format: "%0.2f KM", details.distanceFrom(previousLocation: prevLocation))
+            distance.text = String(format: "%0.2f KM", visit.distanceFrom(previousLocation: prevLocation))
         } else {
             distance.text = "0.0"
         }

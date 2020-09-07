@@ -9,6 +9,10 @@
 import Foundation
 
 extension Date {
+
+    /// Returns requested date components for the current calendar of the date
+    /// - Parameter components: components required by the caller
+    /// - Returns: Date components of the date
     func get(components: Calendar.Component...) -> DateComponents {
         Calendar.current.dateComponents(Set(components), from: self)
     }

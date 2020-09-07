@@ -17,7 +17,10 @@ enum VisitState: String {
 }
 
 extension VisitState {
-    func color() -> UIColor {
+
+    /// Background color based on the visit state
+    /// - Returns: Background color for the state
+    func backgroundColor() -> UIColor {
         switch self {
         case .todo:
             return .todoOption

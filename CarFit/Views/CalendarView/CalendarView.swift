@@ -58,7 +58,7 @@ final class CalendarView: UIView {
 extension CalendarView: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return caledarViewModel.numberOfDaysIn()
+        return caledarViewModel.numberOfDays()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
