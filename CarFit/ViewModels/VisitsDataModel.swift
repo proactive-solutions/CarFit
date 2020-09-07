@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 final class VisitsDataModel {
     private let visitData: VisitsData
@@ -39,5 +40,13 @@ final class VisitsDataModel {
 
     func taskDescription() -> String {
         visitData.tasks.map { $0.title }.joined(separator: ", ")
+    }
+
+    func distanceFrom(previousLocation: CLLocation) -> Double {
+        let currentVisitLocation = CLLocation(
+            latitude: visitData.houseOwnerLatitude,
+            longitude: visitData.houseOwnerLongitude
+        )
+        return (currentVisitLocation.distance(from: previousLocation) / 1000.0)
     }
 }

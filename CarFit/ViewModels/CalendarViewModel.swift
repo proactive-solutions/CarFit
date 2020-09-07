@@ -26,7 +26,6 @@ final class CalendarViewModel {
         let todayDate = Date()
         let strValue = dateFormatter.string(from: todayDate)
         let date2 = dateFormatter.date(from: strValue)
-        print(date, strValue, date2)
         return date == date2
     }
 

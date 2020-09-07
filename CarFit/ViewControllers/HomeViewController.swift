@@ -5,6 +5,7 @@
 //  Test Project
 //
 
+import CoreLocation
 import UIKit
 
 final class HomeViewController: UIViewController, AlertDisplayer {
@@ -84,9 +85,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as! HomeTableViewCell
 
         if let data = cleanerListViewModel.visits?.data[indexPath.row] {
-            cell.display(details: VisitsDataModel(with: data))
+            if (indexPath.row == 0) {
+                cell.display(details: VisitsDataModel(with: data), previousVistiLocation: nil)
+            } else if let previousVisitData = cleanerListViewModel.visits?.data[indexPath.row - 1] {
+                let prevVisitLocation = CLLocation(
+                    latitude: previousVisitData.houseOwnerLatitude,
+                    longitude: previousVisitData.houseOwnerLongitude
+                )
+                cell.display(
+                    details: VisitsDataModel(with: data),
+                    previousVistiLocation: prevVisitLocation
+                )
+            }
         }
-
         return cell
     }
 }

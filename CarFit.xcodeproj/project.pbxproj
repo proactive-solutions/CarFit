@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0A186E2505344400627977 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A186D2505344400627977 /* Task.swift */; };
+		2D0A1870250539F200627977 /* VisitsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0A186F250539F200627977 /* VisitsData.swift */; };
 		2D129D472504C77F005ADDC8 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D129D462504C77F005ADDC8 /* Date+Extension.swift */; };
 		2D129D492504EA6F005ADDC8 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D129D482504EA6F005ADDC8 /* CalendarViewModel.swift */; };
 		2D129D4B25050751005ADDC8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D129D4A25050751005ADDC8 /* Constants.swift */; };
@@ -67,6 +69,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D0A186D2505344400627977 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		2D0A186F250539F200627977 /* VisitsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitsData.swift; sourceTree = "<group>"; };
 		2D129D462504C77F005ADDC8 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		2D129D482504EA6F005ADDC8 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		2D129D4A25050751005ADDC8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				2D8069432503DDEB0032B917 /* Visits.swift */,
+				2D0A186D2505344400627977 /* Task.swift */,
+				2D0A186F250539F200627977 /* VisitsData.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				620DDEB0247E773C00BBF31C /* AppDelegate.swift in Sources */,
 				620DDEFD247E782500BBF31C /* HomeViewController.swift in Sources */,
 				2D32C48625049EF000BA3287 /* TaskViewModel.swift in Sources */,
+				2D0A1870250539F200627977 /* VisitsData.swift in Sources */,
 				620DDEEA247E779700BBF31C /* DayCell.swift in Sources */,
 				620DDEFA247E780C00BBF31C /* HomeTableViewCell.swift in Sources */,
 				2D8069442503DDEB0032B917 /* Visits.swift in Sources */,
@@ -477,6 +484,7 @@
 				2D129D472504C77F005ADDC8 /* Date+Extension.swift in Sources */,
 				2D32C48425049A4600BA3287 /* VisitState.swift in Sources */,
 				2D9A86EA250354150074C2F8 /* TableView.swift in Sources */,
+				2D0A186E2505344400627977 /* Task.swift in Sources */,
 				62FA8FF5247EB63A00F08E73 /* AlertDisplayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

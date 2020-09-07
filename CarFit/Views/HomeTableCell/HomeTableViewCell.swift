@@ -30,7 +30,7 @@ final class HomeTableViewCell: UITableViewCell {
         ]
     }
 
-    func display(details: VisitsDataModel) {
+    func display(details: VisitsDataModel, previousVistiLocation: CLLocation?) {
         customer.text = details.fullName
         destination.text = details.location
         let _status = details.visitStatus
@@ -39,5 +39,11 @@ final class HomeTableViewCell: UITableViewCell {
         arrivalTime.text = details.expectedTime ?? "Unknown"
         timeRequired.text = "\(details.requiredTime()) min"
         tasks.text = details.taskDescription()
+
+        if let prevLocation = previousVistiLocation {
+            distance.text = String(format: "%0.2f KM", details.distanceFrom(previousLocation: prevLocation))
+        } else {
+            distance.text = "0.0"
+        }
     }
 }
