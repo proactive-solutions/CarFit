@@ -16,6 +16,11 @@ final class HomeViewController: UIViewController, AlertDisplayer {
     @IBOutlet private var workOrderTableView: RefreshableTableView!
     @IBOutlet private var calendarViewHeight: NSLayoutConstraint!
     private let cellID = "HomeTableViewCell"
+    private var visits = [VisitsData]() {
+        didSet {
+            workOrderTableView.reloadData()
+        }
+    }
 
     private let tapGesture = UITapGestureRecognizer()
     private let cleanerListViewModel = CleanerListViewModel()
@@ -30,8 +35,7 @@ final class HomeViewController: UIViewController, AlertDisplayer {
         super.viewDidLoad()
         setupUI()
         addTapGesureOnTableView()
-        cleanerListViewModel.getVisits()
-        workOrderTableView.reloadData()
+        visits = cleanerListViewModel.getVisits()
     }
 
     // MARK: - Add calender to view
@@ -62,8 +66,7 @@ final class HomeViewController: UIViewController, AlertDisplayer {
     private func addPullToRefreshOnTableView() {
         self.workOrderTableView.onRefresh { [weak self] in
             guard let self = self else { return }
-            self.cleanerListViewModel.getVisits()
-            self.workOrderTableView.reloadData()
+            self.visits = self.cleanerListViewModel.getVisits()
             self.workOrderTableView.endRefresh()
         }
     }
@@ -87,26 +90,27 @@ final class HomeViewController: UIViewController, AlertDisplayer {
 // MARK: - Tableview delegate and datasource methods
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cleanerListViewModel.visits?.data.count ?? 0
+        return self.visits.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellID, for: indexPath) as! HomeTableViewCell
 
-        if let data = cleanerListViewModel.visits?.data[indexPath.row] {
-            if (indexPath.row == 0) {
-                cell.display(visit: VisitsDataModel(with: data), previousVistiLocation: nil)
-            } else if let previousVisitData = cleanerListViewModel.visits?.data[indexPath.row - 1] {
-                let prevVisitLocation = CLLocation(
-                    latitude: previousVisitData.houseOwnerLatitude,
-                    longitude: previousVisitData.houseOwnerLongitude
-                )
-                cell.display(
-                    visit: VisitsDataModel(with: data),
-                    previousVistiLocation: prevVisitLocation
-                )
-            }
+        let data = self.visits[indexPath.row]
+        if (indexPath.row == 0) {
+            cell.display(visit: VisitsDataModel(with: data), previousVistiLocation: nil)
+        } else {
+            let previousVisitData = self.visits[indexPath.row - 1]
+            let prevVisitLocation = CLLocation(
+                latitude: previousVisitData.houseOwnerLatitude,
+                longitude: previousVisitData.houseOwnerLongitude
+            )
+            cell.display(
+                visit: VisitsDataModel(with: data),
+                previousVistiLocation: prevVisitLocation
+            )
         }
+
         return cell
     }
 }
@@ -114,6 +118,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Get selected calendar date
 extension HomeViewController: CalendarDelegate {
     func getSelectedDate(_ date: String) {
-        print(date)
+        self.visits = self.cleanerListViewModel.visitsOn(date: date)
     }
 }
