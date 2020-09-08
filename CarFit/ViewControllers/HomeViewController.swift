@@ -114,6 +114,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Get selected calendar date
 extension HomeViewController: CalendarDelegate {
     func getSelectedDate(_ date: String) {
-
+        print(date)
     }
 }

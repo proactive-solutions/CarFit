@@ -19,7 +19,7 @@ final class CalendarView: UIView {
 
     private let cellID = "DayCell"
     weak var delegate: CalendarDelegate?
-    private let caledarViewModel = CalendarViewModel()
+    private let calendarViewModel = CalendarViewModel()
 
     //MARK:- Initialize calendar
     private func initialize() {
@@ -27,29 +27,29 @@ final class CalendarView: UIView {
         self.daysCollectionView.register(nib, forCellWithReuseIdentifier: self.cellID)
         self.daysCollectionView.delegate = self
         self.daysCollectionView.dataSource = self
-        monthAndYear.text = "\(caledarViewModel.monthTitle) \(caledarViewModel.year)"
+        monthAndYear.text = "\(calendarViewModel.monthTitle) \(calendarViewModel.year)"
     }
     
     //MARK:- Change month when left and right arrow button tapped
     @IBAction private func leftArrowTapped(_ sender: UIButton) {
-        if (caledarViewModel.month > 1) {
-            caledarViewModel.month -= 1
+        if (calendarViewModel.month > 1) {
+            calendarViewModel.month -= 1
         } else {
-            caledarViewModel.month = 12
-            caledarViewModel.year -= 1
+            calendarViewModel.month = 12
+            calendarViewModel.year -= 1
         }
-        monthAndYear.text = "\(caledarViewModel.monthTitle) \(caledarViewModel.year)"
+        monthAndYear.text = "\(calendarViewModel.monthTitle) \(calendarViewModel.year)"
         daysCollectionView.reloadData()
     }
 
     @IBAction private func rightArrowTapped(_ sender: UIButton) {
-        if (caledarViewModel.month < 12) {
-            caledarViewModel.month += 1
+        if (calendarViewModel.month < 12) {
+            calendarViewModel.month += 1
         } else {
-            caledarViewModel.month = 1
-            caledarViewModel.year += 1
+            calendarViewModel.month = 1
+            calendarViewModel.year += 1
         }
-        monthAndYear.text = "\(caledarViewModel.monthTitle) \(caledarViewModel.year)"
+        monthAndYear.text = "\(calendarViewModel.monthTitle) \(calendarViewModel.year)"
         daysCollectionView.reloadData()
    }
 }
@@ -58,17 +58,21 @@ final class CalendarView: UIView {
 extension CalendarView: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return caledarViewModel.numberOfDays()
+        return calendarViewModel.numberOfDays()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) as! DayCell
         cell.display(
             day: indexPath.item + 1,
-            dayOfWeek: caledarViewModel.dayOfWeek(day: indexPath.item + 1),
-            isCurrentDay: caledarViewModel.isCurrentDate(day: indexPath.item + 1)
+            dayOfWeek: calendarViewModel.dayOfWeek(day: indexPath.item + 1),
+            isCurrentDay: calendarViewModel.isCurrentDate(day: indexPath.item + 1)
         )
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.getSelectedDate(calendarViewModel.dateString_yyyy_MM_dd(withDay: indexPath.item + 1))
     }
 }
 

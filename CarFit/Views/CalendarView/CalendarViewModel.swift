@@ -24,6 +24,9 @@ final class CalendarViewModel {
         Constants.monthNames[month - 1]
     }
 
+    /// Check if the day is today or not. Month and Year is used from the `month` and `year` property respectively.
+    /// - Parameter day: day in the current `month` and `year`
+    /// - Returns: `true` if day makes today date.
     func isCurrentDate(day: Int) -> Bool {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.date(from: "\(year)-\(month)-\(day)")
@@ -35,7 +38,7 @@ final class CalendarViewModel {
 
     /// Returns weekday for the day i.e. day is Sunday, Monday etc. Month and Year is used from the `month` and `year` property respectively.
     /// - Parameter day: A valid day according to set month and year
-    /// - Returns: <#description#>
+    /// - Returns: day on the given date
     func dayOfWeek(day: Int) -> String {
         var dateComponents = DateComponents()
         dateComponents.year = year
@@ -54,7 +57,7 @@ final class CalendarViewModel {
         return  Constants.weekdayName[weekDay - 1]
     }
 
-    /// Number of days in the month in a particualar year.  Month and Year is used from the `month` and `year` property respectively.
+    /// Number of days in the month in a particualar year. Month and Year is used from the `month` and `year` property respectively.
     /// - Returns: Number of years in the month
     func numberOfDays() -> Int {
         let dateComponents = DateComponents(year: year, month: month)
@@ -62,5 +65,14 @@ final class CalendarViewModel {
         let range = calendar.range(of: .day, in: .month, for: date)!
         let numDays = range.count
         return  numDays
+    }
+
+    /// Returns date string in `yyyy-MM-dd` format for the given day. Month and Year is used from the `month` and `year` property respectively.
+    /// - Parameter withDay: day of the month
+    /// - Returns: Date for the day e.g. 2020-09-18
+    func dateString_yyyy_MM_dd(withDay: Int) -> String {
+        let monthValue = month < 10 ? "0\(month)" : "\(month)"
+        let dayValue = withDay < 10 ? "0\(withDay)" : "\(withDay)"
+        return "\(year)-\(monthValue)-\(dayValue)"
     }
 }

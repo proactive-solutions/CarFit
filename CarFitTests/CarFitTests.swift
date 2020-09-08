@@ -115,6 +115,8 @@ class CarFitTests: XCTestCase {
         XCTAssertTrue(viewModel.numberOfDays() == 29)
         XCTAssertTrue(viewModel.dayOfWeek(day: 1) == "Sat")
         XCTAssertFalse(viewModel.isCurrentDate(day: 1))
+        XCTAssertTrue(viewModel.dateString_yyyy_MM_dd(withDay: 1) == "2020-02-01")
+        XCTAssertTrue(viewModel.dateString_yyyy_MM_dd(withDay: 10) == "2020-02-10")
 
         let currentDate = Date()
         let dateFormatter = DateFormatter()
