@@ -16,4 +16,10 @@ extension Date {
     func get(components: Calendar.Component...) -> DateComponents {
         Calendar.current.dateComponents(Set(components), from: self)
     }
+
+    func getDateString(format: String = "yyyy-MM-dd") -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        return formatter.string(from: self)
+    }
 }

@@ -31,7 +31,7 @@ final class CleanerListViewModel {
     /// Returns the visits on a given date
     /// - Parameter date: Date string in `yyyy-MM-dd` format
     /// - Returns: List of visits on the day
-    func visitsOn(date: String) -> [VisitsData] {
+    func getVisitsOn(date: String) -> [VisitsData] {
         self.visits.filter {
             $0.startTimeUTC.contains(date)
         }

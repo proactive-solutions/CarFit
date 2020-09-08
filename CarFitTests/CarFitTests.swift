@@ -134,8 +134,8 @@ class CarFitTests: XCTestCase {
 
     func testCleanerListViewModel() throws {
         let viewModel = CleanerListViewModel()
-        viewModel.getVisits()
-        XCTAssertNotNil(viewModel.visits)
+        let visits = viewModel.getVisits()
+        XCTAssertFalse(visits.isEmpty)
     }
 
     func testPerformanceExample() throws {

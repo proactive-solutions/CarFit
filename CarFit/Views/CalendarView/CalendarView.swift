@@ -8,31 +8,36 @@
 import UIKit
 
 protocol CalendarDelegate: class {
-    func getSelectedDate(_ date: String)
+    func getSelectedDates(_ date: Set<String>)
 }
 
 final class CalendarView: UIView {
-    @IBOutlet private weak var monthAndYear: UILabel!
-    @IBOutlet private weak var leftBtn: UIButton!
-    @IBOutlet private weak var rightBtn: UIButton!
-    @IBOutlet private weak var daysCollectionView: UICollectionView!
+    @IBOutlet private var monthAndYear: UILabel!
+    @IBOutlet private var leftBtn: UIButton!
+    @IBOutlet private var rightBtn: UIButton!
+    @IBOutlet private var daysCollectionView: UICollectionView!
+
+    /// Holds selected dates
+    private var selectedDates: Set<String> = [Date().getDateString()]
 
     private let cellID = "DayCell"
     weak var delegate: CalendarDelegate?
     private let calendarViewModel = CalendarViewModel()
 
-    //MARK:- Initialize calendar
+    // MARK: - Initialize calendar
+
     private func initialize() {
-        let nib = UINib(nibName: self.cellID, bundle: nil)
-        self.daysCollectionView.register(nib, forCellWithReuseIdentifier: self.cellID)
-        self.daysCollectionView.delegate = self
-        self.daysCollectionView.dataSource = self
+        let nib = UINib(nibName: cellID, bundle: nil)
+        daysCollectionView.register(nib, forCellWithReuseIdentifier: cellID)
+        daysCollectionView.delegate = self
+        daysCollectionView.dataSource = self
         monthAndYear.text = "\(calendarViewModel.monthTitle) \(calendarViewModel.year)"
     }
-    
-    //MARK:- Change month when left and right arrow button tapped
+
+    // MARK: - Change month when left and right arrow button tapped
+
     @IBAction private func leftArrowTapped(_ sender: UIButton) {
-        if (calendarViewModel.month > 1) {
+        if calendarViewModel.month > 1 {
             calendarViewModel.month -= 1
         } else {
             calendarViewModel.month = 12
@@ -43,7 +48,7 @@ final class CalendarView: UIView {
     }
 
     @IBAction private func rightArrowTapped(_ sender: UIButton) {
-        if (calendarViewModel.month < 12) {
+        if calendarViewModel.month < 12 {
             calendarViewModel.month += 1
         } else {
             calendarViewModel.month = 1
@@ -51,34 +56,44 @@ final class CalendarView: UIView {
         }
         monthAndYear.text = "\(calendarViewModel.monthTitle) \(calendarViewModel.year)"
         daysCollectionView.reloadData()
-   }
+    }
 }
 
-//MARK:- Calendar collection view delegate and datasource methods
-extension CalendarView: UICollectionViewDataSource, UICollectionViewDelegate {
+// MARK: - Calendar collection view delegate and datasource methods
 
+extension CalendarView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return calendarViewModel.numberOfDays()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellID, for: indexPath) as! DayCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! DayCell
+        let dateString = calendarViewModel.dateString_yyyy_MM_dd(withDay: indexPath.item + 1)
         cell.display(
             day: indexPath.item + 1,
             dayOfWeek: calendarViewModel.dayOfWeek(day: indexPath.item + 1),
-            isCurrentDay: calendarViewModel.isCurrentDate(day: indexPath.item + 1)
+            isSelectedDate: selectedDates.contains(dateString)
         )
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.getSelectedDate(calendarViewModel.dateString_yyyy_MM_dd(withDay: indexPath.item + 1))
+        let selectedDate = calendarViewModel.dateString_yyyy_MM_dd(withDay: indexPath.item + 1)
+        if selectedDates.count < 2 {
+            selectedDates.append(element: selectedDate)
+        } else if selectedDates.contains(selectedDate) {
+            selectedDates.remove(selectedDate)
+        } else {
+            selectedDates.removeFirstAndAppend(element: selectedDate)
+        }
+        delegate?.getSelectedDates(selectedDates)
+        collectionView.reloadData()
     }
 }
 
-//MARK:- Add calendar to the view
+// MARK: - Add calendar to the view
+
 extension CalendarView {
-    
     public class func addCalendar(_ superView: UIView) -> CalendarView? {
         var calendarView: CalendarView?
         if calendarView == nil {

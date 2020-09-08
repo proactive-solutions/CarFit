@@ -22,6 +22,7 @@ final class HomeViewController: UIViewController, AlertDisplayer {
         }
     }
 
+    /// Tap gesture on tab view to hide the calendar view
     private let tapGesture = UITapGestureRecognizer()
     private let cleanerListViewModel = CleanerListViewModel()
 
@@ -117,7 +118,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 // MARK: - Get selected calendar date
 extension HomeViewController: CalendarDelegate {
-    func getSelectedDate(_ date: String) {
-        self.visits = self.cleanerListViewModel.visitsOn(date: date)
+    func getSelectedDates(_ selectedDates: Set<String>) {
+        var visitsOnSelectedDate = [VisitsData]()
+        for selectedDate in selectedDates {
+            visitsOnSelectedDate += self.cleanerListViewModel.getVisitsOn(date: selectedDate)
+        }
+        print(selectedDates)
+        self.visits = visitsOnSelectedDate
     }
 }

@@ -25,9 +25,9 @@ final class DayCell: UICollectionViewCell {
     ///   - _day: day of the month
     ///   - dayOfWeek: week day
     ///   - isCurrentDay: true if today's date otherwise false. Highlighted in cirucular view if value of isCurrentDay is `true`
-    func display(day _day: Int, dayOfWeek: String, isCurrentDay: Bool) {
+    func display(day _day: Int, dayOfWeek: String, isSelectedDate: Bool) {
         day.text = "\(_day)"
         weekday.text = dayOfWeek
-        dayView.backgroundColor = isCurrentDay ? .daySelected : .clear
+        dayView.backgroundColor = isSelectedDate ? .daySelected : .clear
     }
 }
